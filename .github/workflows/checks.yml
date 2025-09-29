@@ -1,0 +1,18 @@
+name: test
+on:
+  - push
+  - pull_request
+  - workflow_call
+
+jobs:
+  test:
+    name: test
+    needs: lint
+    uses: t8ngs/.github/.github/workflows/test.yml@main
+  lint:
+    name: lint
+    needs: typecheck
+    uses: t8ngs/.github/.github/workflows/lint.yml@main
+  typecheck:
+    name: typecheck
+    uses: t8ngs/.github/.github/workflows/typecheck.yml@main

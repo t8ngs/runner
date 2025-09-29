@@ -1,0 +1,7 @@
+{
+  "extends": "@arapucajs/tsconfig/tsconfig.package.json",
+  "compilerOptions": {
+    "rootDir": "./",
+    "outDir": "./dist"
+  }
+}

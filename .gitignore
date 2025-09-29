@@ -137,3 +137,17 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+coverage
+test/__app
+.DS_STORE
+.nyc_output
+.idea
+.vscode/
+*.sublime-project
+*.sublime-workspace
+*.log
+build
+dist
+shrinkwrap.yaml
+.env
+Apple_terminal

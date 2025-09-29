@@ -1,0 +1,32 @@
+on:
+  workflow_run:
+    workflows: ['CI']
+    branches: [main]
+    types:
+      - completed
+name: release-please-main
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: googleapis/release-please-action@v4
+        id: release
+        with:
+          release-type: node
+          token: ${{ secrets.RELEASE_PLEASE_TOKEN }}
+      - name: Install dependencies
+        run: npm ci
+      - name: Build Release Artifact
+        if: ${{ steps.release.outputs.release_created }}
+        run: |
+          mkdir -p artifact
+          npm pack --pack-destination artifact
+      - name: Upload Release Artifact
+        if: ${{ steps.release.outputs.release_created }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release upload ${{ steps.release.outputs.tag_name }} artifact/*.tgz
