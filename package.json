@@ -1,7 +1,7 @@
 {
   "name": "@t8ngs/runner",
   "description": "A simple yet powerful testing framework for Node.js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "engines": {
     "node": ">=18.16.0"
   },
